@@ -2,19 +2,21 @@ package com.example.demo.TrainingProgram.ProgramMakers;
 
 import com.example.demo.TrainingProgram.TrainingWeeks.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProgramCreator {
+public class ProgramCreator implements Serializable {
 
-    public final float squatMax;
-    public final float deadLiftMax;
-    public final float benchMax;
-    public final String upperBackFirst;
-    public final String shoulder;
-    public final String upperBackSecond;
-    public final LocalDate date;
+    public float squatMax;
+    public float deadLiftMax;
+    public float benchMax;
+    public String upperBackFirst;
+    public String shoulder;
+    public String upperBackSecond;
+    public Integer currentSession;
+    public LocalDate date;
     public List<List<String>> programBlueprint = new ArrayList<>();
     public List<String> program = new ArrayList<>();
 
