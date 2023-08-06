@@ -17,7 +17,6 @@ public class SecondWeek {
         secondWeek.add(getSecondDay());
         secondWeek.add(getThirdDay());
         secondWeek.add(getFourthDay());
-        secondWeek.add(getFifthDay());
     }
 
     public String getNameOfWeek() {
@@ -42,8 +41,18 @@ public class SecondWeek {
         String spaceFirst = programCreator.getSpace(programCreator.upperBackFirst.length());
         String spaceSecond = programCreator.getSpace(programCreator.shoulder.length());
         String spaceThird = programCreator.getSpace((programCreator.upperBackSecond.length()));
-        return getStringUpper(spaceFirst, spaceSecond, spaceThird,
-                programCreator.date.plusDays(8));
+        double bench = programCreator.mRound(programCreator.benchMax * 0.8, 2.5);
+        String addon = """
+
+                ----------------------------------------------------------
+                |Extra Volume Bench - Add 2.5 kg, then perform           |
+                |5 x 3  each set with 60 seconds rest between sets.      |
+                ----------------------------------------------------------
+                |Note - If you get below 8 reps, reduce max by 2.5%.     |
+                ----------------------------------------------------------
+                |Still complete the 5 sets of 3 reps regardless          |""";
+        return getStringUpper(bench, spaceFirst, spaceSecond, spaceThird,
+                programCreator.date.plusDays(8), addon);
 
     }
 
@@ -66,67 +75,37 @@ public class SecondWeek {
 
     public String getFourthDay() {
         String spaceFirst = programCreator.getSpace(programCreator.upperBackFirst.length());
+        double bench = programCreator.mRound(programCreator.benchMax * 0.8, 2.5) + 2.5;
         String spaceSecond = programCreator.getSpace(programCreator.shoulder.length());
         String spaceThird = programCreator.getSpace((programCreator.upperBackSecond.length()));
-        return getStringUpper(spaceFirst, spaceSecond, spaceThird,
-                programCreator.date.plusDays(11));
+        String addon = """
+
+                ----------------------------------------------------------
+                |Back Off Bench - Reduce weight by 5kg and proceed with: |
+                ----------------------------------------------------------
+                |If you did 10 reps, then do 10x3, with 60 seconds rest. |
+                ----------------------------------------------------------
+                |If you did 8-9 reps, then do 8x3, with 60 seconds rest. |
+                ----------------------------------------------------------
+                |If you did 7 reps, then do 5x3, with 60 seconds rest.   |
+                ----------------------------------------------------------
+                |If you did < 7 reps, then skip and reduce max by 2.5%.  |""";
+        return getStringUpper(bench, spaceFirst, spaceSecond, spaceThird,
+                programCreator.date.plusDays(11), addon);
     }
 
-    public String getFifthDay() {
-        String spaceFirst = programCreator.getSpace(programCreator.upperBackFirst.length());
-        String spaceSecond = programCreator.getSpace(programCreator.shoulder.length());
-        String spaceThird = programCreator.getSpace((programCreator.upperBackSecond.length()));
-        LocalDate date = programCreator.date.plusDays(13);
+    private String getStringUpper(double bench, String spaceFirst, String spaceSecond, String spaceThird,
+                                  LocalDate date, String addon) {
         String benchFirst = programCreator
-                .getSpace(String.valueOf(programCreator
-                        .mRound(programCreator.benchMax * 0.8, 2.5) - 2.5)
-                        .length() + 14);
+                .getSpace(String.valueOf(bench)
+                        .length() + 15);
         return "----------------------------------------------------------" +
                 "\n" + "|     " + date +
                 "     |Set 1      |Set 2      |Set 3      |" +
                 "\n" + "----------------------------------------------------------" +
                 "\n" + "|Bench Press         |" +
-                (programCreator.mRound(programCreator.benchMax * 0.8, 2.5) - 2.5) + benchFirst +
-                "xMR  |-----------|-----------|" +
-                "\n" + "----------------------------------------------------------" +
-                "\n" + "|" + programCreator.upperBackFirst + spaceFirst +
-                "|      x10  |       x8  |       x8  |" +
-                "\n" + "----------------------------------------------------------" +
-                "\n" + "|" + programCreator.shoulder + spaceSecond +
-                "|      x10  |       x8  |       x6  |" +
-                "\n" + "----------------------------------------------------------" +
-                "\n" + "|" + programCreator.upperBackSecond + spaceThird +
-                "|      x10  |       x8  |       x6  |" +
-                "\n" + "----------------------------------------------------------" +
-                "\n" + "|Optional Exercise 1 |    x8-12  |    x8-12  |    x8-12  |" +
-                "\n" + "----------------------------------------------------------" +
-                "\n" + "|Optional Exercise 2 |    x8-12  |    x8-12  |    x8-12  |" +
-                "\n" + "----------------------------------------------------------";
-    }
-
-    private String getStringUpper(String spaceFirst, String spaceSecond, String spaceThird, LocalDate date) {
-        String benchFirst = programCreator
-                .getSpace(String.valueOf(programCreator
-                        .mRound(programCreator.benchMax * 0.725, 2.5))
-                        .length() + 14);
-        String benchSecond = programCreator
-                .getSpace(String.valueOf(programCreator
-                        .mRound(programCreator.benchMax * 0.775, 2.5))
-                        .length() + 13);
-        String benchThird = programCreator
-                .getSpace(String.valueOf(programCreator
-                        .mRound(programCreator.benchMax * 0.8, 2.5) +2.5)
-                        .length() + 14);
-        return "----------------------------------------------------------" +
-                "\n" + "|     " + date +
-                "     |Set 1      |Set 2      |Set 3      |" +
-                "\n" + "----------------------------------------------------------" +
-                "\n" + "|Bench Press         |" +
-                programCreator.mRound(programCreator.benchMax * 0.725, 2.5) + benchFirst
-                + "x10  |" + programCreator.mRound(programCreator.benchMax * 0.775, 2.5) + benchSecond
-                + "x8  |"
-                + (programCreator.mRound(programCreator.benchMax * 0.8, 2.5) + 2.5) + benchThird +
-                "x6-8 |" +
+                bench + benchFirst
+                + "xMR10|" + "|-----------|-----------|" + addon +
                 "\n" + "----------------------------------------------------------" +
                 "\n" + "|" + programCreator.upperBackFirst + spaceFirst +
                 "|      x10  |       x8  |       x8  |" +

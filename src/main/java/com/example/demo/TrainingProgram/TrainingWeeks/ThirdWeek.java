@@ -64,22 +64,22 @@ public class ThirdWeek {
     private String getStringUpper(Double bench, String spaceFirst, String spaceSecond, String spaceThird, LocalDate date) {
         String benchFirst = programCreator.getSpace(String.valueOf(bench).length() + 14);
 
-        return "----------------------------------------------------------" +
+        return "----------------------------------------------------------------------" +
                 "\n" + "|     " + date +
-                "     |Set 1      |Set 2      |Set 3      |" +
-                "\n" + "----------------------------------------------------------" +
+                "     |Set 1      |Set 2      |Set 3      |Set 4      |" +
+                "\n" + "----------------------------------------------------------------------" +
                 "\n" + "|Bench Press         |" + bench + benchFirst + "x4-6 |" + bench + benchFirst + "x4-6 |"
-                + bench + benchFirst + "x4-6 |" +
-                "\n" + "----------------------------------------------------------" +
+                + bench + benchFirst + "x4-6 |" + bench + benchFirst + "x4-6 |" +
+                "\n" + "----------------------------------------------------------------------" +
                 "\n" + "|" + programCreator.upperBackFirst + spaceFirst +
-                "|       x6  |       x6  |       x6  |" +
-                "\n" + "----------------------------------------------------------" +
+                "|       x6  |       x6  |       x6  |-----------|" +
+                "\n" + "----------------------------------------------------------------------" +
                 "\n" + "|" + programCreator.shoulder + spaceSecond +
-                "|       x6  |       x6  |       x6  |" +
-                "\n" + "----------------------------------------------------------" +
+                "|       x6  |       x6  |       x6  |-----------|" +
+                "\n" + "----------------------------------------------------------------------" +
                 "\n" + "|" + programCreator.upperBackSecond + spaceThird +
-                "|       x6  |       x6  |       x6  |" +
-                "\n" + "----------------------------------------------------------";
+                "|       x6  |       x6  |       x6  |-----------|" +
+                "\n" + "----------------------------------------------------------------------";
     }
 
     private String getStringLower(Double squat, Double deadlift, LocalDate date) {

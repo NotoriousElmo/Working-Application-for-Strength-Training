@@ -47,9 +47,9 @@ public class FourthWeek {
         String spaceThird = programCreator.getSpace((programCreator.upperBackSecond.length()));
         LocalDate date = programCreator.date.plusDays(22);
         float bench = programCreator.benchMax;
-        Double benchFirst = programCreator.mRound(bench * 0.875 - 5, 2.5);
-        Double benchSecond = programCreator.mRound(bench * 0.9 - 5, 2.5);
-        Double benchThird = programCreator.mRound(bench * 0.9, 2.5);
+        Double benchFirst = programCreator.mRound((bench * 0.875) - 5, 2.5);
+        Double benchSecond = programCreator.mRound((bench * 0.9) - 5, 2.5);
+        Double benchThird = programCreator.mRound(bench * 0.925, 2.5);
 
         return "----------------------------------------------------------------------" +
                 "\n" + "|     " + date +
@@ -60,7 +60,8 @@ public class FourthWeek {
                 + "x3  |" + benchSecond + programCreator.getSpace(String.valueOf(benchSecond).length() + 13)
                 + "x3  |"
                 + benchThird + programCreator.getSpace(String.valueOf(benchThird).length() + 13)
-                + "x3  |-----------|" +
+                + "x1-2|" + benchFirst + programCreator.getSpace(String.valueOf(benchFirst).length() + 13)
+                + "xMR |" +
                 "\n" + "----------------------------------------------------------------------" +
                 "\n" + "|" + programCreator.upperBackFirst + spaceFirst +
                 "|      x10  |      x10  |      x8   |      x6   |" +
@@ -117,7 +118,10 @@ public class FourthWeek {
                 + "x3  |" + programCreator.mRound(bench * 0.9, 2.5)
                 + programCreator.getSpace(String.valueOf(benchSecond).length() + 14) + "x2-4 |"
                 + programCreator.mRound(programCreator.benchMax * 0.95, 2.5)
-                + programCreator.getSpace(String.valueOf(benchThird).length() + 14) + "x1-2 |-----------|" +
+                + programCreator.getSpace(String.valueOf(benchThird).length() + 14) + "x1-2 |" +
+                programCreator.mRound(bench * 0.875, 2.5) +
+                programCreator.getSpace(String.valueOf(benchFirst).length() + 13)
+                + "xMR |" +
                 "\n" + "----------------------------------------------------------------------" +
                 "\n" + "|" + programCreator.upperBackFirst + spaceFirst +
                 "|      x10  |      x10  |       x8  |       x6  |" +

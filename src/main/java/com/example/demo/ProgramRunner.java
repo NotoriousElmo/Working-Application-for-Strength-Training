@@ -9,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -76,7 +78,7 @@ public class ProgramRunner extends Application {
         currentSession = 0;
         Text textFirst = new Text("Squat Max: ");
         Text textSecond = new Text("Bench Press Max: ");
-        Text textThird = new Text("DeadLift Max: ");
+        Text textThird = new Text("Deadlift Max: ");
         Text textFourth = new Text("Shoulder Accessory: ");
         Text textFifth = new Text("First Back Accessory: ");
         Text textSixth = new Text("Second Back Accessory: ");
@@ -128,7 +130,7 @@ public class ProgramRunner extends Application {
         });
 
         GridPane gridPane = new GridPane();
-        gridPane.setMinSize(1080, 720);
+        gridPane.setMinSize(1080, 2400);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setStyle("-fx-background-color: black;");
@@ -191,7 +193,7 @@ public class ProgramRunner extends Application {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setStyle("-fx-background-color: black;");
         gridPane.setPadding(new Insets(10, 10, 10, 10));
-        gridPane.setMinSize(1080, 720);
+        gridPane.setMinSize(1080, 2400);
         gridPane.add(textFirst, 0, 0);
         gridPane.add(choiceBox,0, 1);
         gridPane.add(button, 1, 1);
@@ -204,7 +206,7 @@ public class ProgramRunner extends Application {
     private void enterNewMax(Stage stage) {
         Text textFirst = new Text("Squat Max: ");
         Text textSecond = new Text("Bench Press Max: ");
-        Text textThird = new Text("DeadLift Max: ");
+        Text textThird = new Text("Deadlift Max: ");
         Text textFourth = new Text("Do you want to change any accessory exercises?");
 
         TextField textFieldSquat = new TextField();
@@ -243,7 +245,7 @@ public class ProgramRunner extends Application {
         });
 
         GridPane gridPane = new GridPane();
-        gridPane.setMinSize(1080, 720);
+        gridPane.setMinSize(1080, 2400);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setStyle("-fx-background-color: black;");
@@ -266,7 +268,7 @@ public class ProgramRunner extends Application {
     private void calculateNewMax(Stage stage) {
         Text textFirst = new Text("Squat Reps: ");
         Text textSecond = new Text("Bench Press Reps: ");
-        Text textThird = new Text("DeadLift Reps: ");
+        Text textThird = new Text("Deadlift Reps: ");
         Text textFourth = new Text("Do you want to change any accessory exercises?");
 
         TextField textFieldSquat = new TextField();
@@ -305,7 +307,7 @@ public class ProgramRunner extends Application {
         });
 
         GridPane gridPane = new GridPane();
-        gridPane.setMinSize(1080, 720);
+        gridPane.setMinSize(1080, 2400);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setStyle("-fx-background-color: black;");
@@ -357,7 +359,7 @@ public class ProgramRunner extends Application {
         });
 
         GridPane gridPane = new GridPane();
-        gridPane.setMinSize(1080, 720);
+        gridPane.setMinSize(1080, 2400);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setStyle("-fx-background-color: black;");
@@ -399,7 +401,7 @@ public class ProgramRunner extends Application {
         });
 
         GridPane gridPane = new GridPane();
-        gridPane.setMinSize(1080, 720);
+        gridPane.setMinSize(1080, 2400);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setStyle("-fx-background-color: black;");
@@ -438,27 +440,30 @@ public class ProgramRunner extends Application {
         session.setTextAlignment(TextAlignment.CENTER);
         session.setFill(Color.WHITE);
 
+        Button buttonNext = new Button("Next");
+        buttonNext.setMinSize(175, 40);
+        buttonNext.setStyle("-fx-font: normal bold 35px 'plain'");
+        buttonNext.setOnAction(actionEvent -> nextSession(stage));
+
+        Button buttonPrevious = new Button("Previous");
+        buttonPrevious.setMinSize(175, 40);
+        buttonPrevious.setStyle("-fx-font: normal bold 35px 'plain'");
+        buttonPrevious.setOnAction(actionEvent -> previousSession(stage));
+
+        HBox buttonsContainer = new HBox(buttonPrevious, buttonNext);
+        buttonsContainer.setAlignment(Pos.CENTER);
+        buttonsContainer.setSpacing(10);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setCenter(session);
+        borderPane.setBottom(buttonsContainer);
+
         GridPane gridPane = new GridPane();
-        gridPane.setMinSize(1080, 720);
+        gridPane.setMinSize(1080, 2400);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setStyle("-fx-background-color: black;");
-
-        Button buttonNext = new Button("Next");
-        buttonNext.setMinSize(80, 40);
-        buttonNext.setStyle("-fx-font: normal bold 35px 'plain'");
-        buttonNext.setOnAction(actionEvent -> nextSession(stage));
-        buttonNext.setAlignment(Pos.BOTTOM_RIGHT);
-
-        Button buttonPrevious = new Button("Previous");
-        buttonPrevious.setMinSize(80, 40);
-        buttonPrevious.setStyle("-fx-font: normal bold 35px 'plain'");
-        buttonPrevious.setOnAction(actionEvent -> previousSession(stage));
-        buttonPrevious.setAlignment(Pos.BOTTOM_LEFT);
-
-        gridPane.add(session,0, 0);
-        gridPane.add(buttonPrevious, 0, 2);
-        gridPane.add(buttonNext ,1, 2);
+        gridPane.getChildren().add(borderPane);
 
         Scene scene = new Scene(gridPane);
         stage.setScene(scene);
